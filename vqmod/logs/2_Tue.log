@@ -1,0 +1,17 @@
+---------- Date: 2015-11-17 06:18:25 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /cart/admin/index.php
+VQMod::_parseMods - INVALID XML FILE: : Start tag expected, '&lt;' not found in /var/www/html/cart/vqmod/xml/vqmod_echo.xml, line: 19
+----------------------------------------------------------------------
+
+
+---------- Date: 2015-11-17 07:03:27 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /cart/admin/
+VQMod::_parseMods - INVALID XML FILE: : CData section not finished
+
+					public function index() {
+							
+
+&lt;/modific in /var/www/html/cart/vqmod/xml/vqmod_echo.xml, line: 26
+----------------------------------------------------------------------
+
+

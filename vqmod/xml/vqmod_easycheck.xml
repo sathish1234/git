@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<id>VQMOD CORE FOR OPENCART - DO NOT REMOVE</id>
+	<version>1.5.6.2 and 2.0.3.1</version>
+	<vqmver required="true">2.5.0</vqmver>
+	<author>vqmod.com</author>
+	
+	<file name="catalog/controller/account/address.php">
+		<operation>
+			<search position="replace"><![CDATA[$this->model_account_address->addAddress($this->request->post);]]></search>
+			<add><![CDATA[
+				$billing_address_id = $this->model_account_address->addAddress($this->request->post);
+				$shipping_address_id = $this->model_account_address->addAddress($this->request->post);
+				$this->load->model('easycheck/combination');
+
+				$custom_data = array(
+					'customer_id'	=>	$this->customer->getId(),
+					'payment_id'	=>	$billing_address_id,
+					'shipping_id'	=>	$shipping_address_id
+				);
+
+				$this->model_easycheck_combination->addCombination($custom_data);
+			]]></add>
+		</operation>
+	</file>
+
+	<file name="catalog/controller/checkout/checkout.php">
+		<operation>
+			<search position="replace"><![CDATA[public function index() {]]></search>
+			<add><![CDATA[
+				public function index() {
+					if($this->config->get('easycheck_status')) {
+						$this->response->redirect($this->url->link('easycheck/checkout', '', 'SSL')); 
+					}
+			]]></add>
+		</operation>
+	</file>
+
+</modification>
